@@ -231,7 +231,7 @@ document.addEventListener("DOMContentLoaded", function () {
       UIkit.notification({
         message: `La suma de los valores en la categoría "${categoria}" (${suma}) excede el máximo de riesgos permitido (${maxRiesgos}).`,
         status: "warning", // Color de la notificación (rojo)
-        pos: "bottom-right", // Posición de la notificación
+        pos: "bottom-left", // Posición de la notificación
         timeout: 3000, // Duración en milisegundos (5 segundos)
       });
       return false;
@@ -279,7 +279,7 @@ document.addEventListener("DOMContentLoaded", function () {
         message:
           "Debe ingresar el número de acompañamientos antes de ingresar los riesgos.",
         status: "warning", // Color de la notificación (rojo)
-        pos: "bottom-right", // Posición de la notificación
+        pos: "bottom-left", // Posición de la notificación
         timeout: 3000, // Duración en milisegundos (5 segundos)
       });
       categorias.forEach((categoria) => {
@@ -528,6 +528,10 @@ document.addEventListener("DOMContentLoaded", function () {
       );
       if (this.checked) {
         seccionAcompanamientos.style.display = "block";
+        document.querySelectorAll("#seccionAcompanamientos input").forEach((input) => {
+          input.value = 0;
+        });
+        maxRiesgos = select.acompanamientos.value;
       } else {
         seccionAcompanamientos.style.display = "none";
       }
@@ -601,7 +605,7 @@ document.addEventListener("DOMContentLoaded", function () {
         UIkit.notification({
           message: "Formulario limpiado",
           status: "success",
-          pos: "bottom-right",
+          pos: "bottom-left",
           timeout: 3000,
         });
       });
@@ -627,6 +631,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function llenarAcompanamientos(maxAcompanamientos) {
+
     function generarValoresPositivos(max) {
       const bajo = Math.floor(Math.random() * max);
       const medio = Math.floor(Math.random() * (max - bajo));
@@ -791,7 +796,7 @@ document.addEventListener("DOMContentLoaded", function () {
       UIkit.notification({
         message: "Datos aleatorios generados",
         status: "success",
-        pos: "bottom-right",
+        pos: "bottom-left",
         timeout: 3000,
       });
     });
@@ -813,7 +818,7 @@ document.addEventListener("DOMContentLoaded", function () {
         UIkit.notification({
           message: "Por favor, selecciona una opción para cada habilidad.",
           status: "warning",
-          pos: "bottom-right",
+          pos: "bottom-left",
           timeout: 3000,
         });
         return;
