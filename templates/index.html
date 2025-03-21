@@ -1070,12 +1070,15 @@
     </div>
           <!--Enviar Formulario-->
           <button
+            id="submit"
             type="submit"
             class="uk-button uk-button-primary uk-button-large uk-width-1-1 uk-margin"
           >
             Enviar
           </button>
         </form>
+
+        
 
         <div id="response-modal" uk-modal>
           <div class="uk-modal-dialog uk-modal-body">
@@ -1095,6 +1098,9 @@
           hidden
         ></div>
       </div>
+    </div>
+    <div id="spinner" class="uk-hidden uk-position-fixed uk-position-center">
+      <div uk-spinner="ratio: 2"></div> <!-- Aumenta el tamaño del spinner con ratio: 2 -->
     </div>
     <div id="random">
       <button id="random-button" ><i class="fa-solid fa-shuffle"></i></button>

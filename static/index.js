@@ -8,78 +8,82 @@ document.addEventListener("DOMContentLoaded", function () {
   let reconocimientos = [];
   let maxRiesgos = 0;
 
-  
-// Función para cargar sedes
-async function loadSedes() {
-  const response = await fetch("/static/json/sedes.json");
-  sedes = await response.json();
+  // Función para cargar sedes
+  async function loadSedes() {
+    const response = await fetch("/static/json/sedes.json");
+    sedes = await response.json();
 
-  // Limpiar el select antes de agregar nuevas opciones
-  select.sede.innerHTML = '<option value="">Seleccione una sede</option>';
-  // Agregar opciones al select
-  sedes.forEach((sede) => {
+    // Limpiar el select antes de agregar nuevas opciones
+    select.sede.innerHTML = '<option value="">Seleccione una sede</option>';
+    // Agregar opciones al select
+    sedes.forEach((sede) => {
       const option = document.createElement("option");
       option.value = sede;
       option.textContent = sede;
       select.sede.appendChild(option);
-  });
-}
+    });
+  }
 
-// Función para cargar facultades
-async function loadFacultades() {
-  const response = await fetch("/static/json/facultades.json");
-  faculties = await response.json();
-  select.facultad.innerHTML = '<option value="">Seleccione una facultad</option>';
-  Object.keys(faculties).forEach((fac) => {
+  // Función para cargar facultades
+  async function loadFacultades() {
+    const response = await fetch("/static/json/facultades.json");
+    faculties = await response.json();
+    select.facultad.innerHTML =
+      '<option value="">Seleccione una facultad</option>';
+    Object.keys(faculties).forEach((fac) => {
       const option = document.createElement("option");
       option.value = fac;
       option.textContent = fac;
       select.facultad.appendChild(option);
-  });
-}
+    });
+  }
 
-// Función para cargar programas académicos
-function loadProgramas() {
-  const facultad = select.facultad.value;
-  select.programa.innerHTML = '<option value="">Seleccione un programa académico</option>';
-  if (facultad && faculties[facultad]) {
+  // Función para cargar programas académicos
+  function loadProgramas() {
+    const facultad = select.facultad.value;
+    select.programa.innerHTML =
+      '<option value="">Seleccione un programa académico</option>';
+    if (facultad && faculties[facultad]) {
       select.programa.disabled = false;
       select.programa.classList.remove("disabled-select");
       faculties[facultad].forEach((prog) => {
-          const option = document.createElement("option");
-          option.value = prog;
-          option.textContent = prog;
-          select.programa.appendChild(option);
+        const option = document.createElement("option");
+        option.value = prog;
+        option.textContent = prog;
+        select.programa.appendChild(option);
       });
-  } else {
+    } else {
       select.programa.disabled = true;
       select.programa.classList.add("disabled-select");
+    }
   }
-}
 
-// Función para cargar todos los programas académicos
-function loadTodosLosProgramas() {
-  select.nuevoPrograma.innerHTML = '<option value="">Seleccione un programa académico</option>';
-  Object.keys(faculties).forEach((facultad) => {
+  // Función para cargar todos los programas académicos
+  function loadTodosLosProgramas() {
+    select.nuevoPrograma.innerHTML =
+      '<option value="">Seleccione un programa académico</option>';
+    Object.keys(faculties).forEach((facultad) => {
       const optgroup = document.createElement("optgroup");
       optgroup.label = facultad;
       faculties[facultad].forEach((prog) => {
-          const option = document.createElement("option");
-          option.value = prog;
-          option.textContent = prog;
-          optgroup.appendChild(option);
+        const option = document.createElement("option");
+        option.value = prog;
+        option.textContent = prog;
+        optgroup.appendChild(option);
       });
       select.nuevoPrograma.appendChild(optgroup);
-  });
-}
+    });
+  }
 
-// Función para cargar departamentos
-async function loadDepartamentos() {
-  const response = await fetch("/static/json/departamentos.json");
-  locations = await response.json();
-  select.departamentoNacimiento.innerHTML = '<option value="">Seleccione un departamento</option>';
-  select.departamentoResidencia.innerHTML = '<option value="">Seleccione un departamento</option>';
-  Object.keys(locations).forEach((depto) => {
+  // Función para cargar departamentos
+  async function loadDepartamentos() {
+    const response = await fetch("/static/json/departamentos.json");
+    locations = await response.json();
+    select.departamentoNacimiento.innerHTML =
+      '<option value="">Seleccione un departamento</option>';
+    select.departamentoResidencia.innerHTML =
+      '<option value="">Seleccione un departamento</option>';
+    Object.keys(locations).forEach((depto) => {
       const optionNacimiento = document.createElement("option");
       optionNacimiento.value = depto;
       optionNacimiento.textContent = depto;
@@ -89,116 +93,122 @@ async function loadDepartamentos() {
       optionResidencia.value = depto;
       optionResidencia.textContent = depto;
       select.departamentoResidencia.appendChild(optionResidencia);
-  });
-}
+    });
+  }
 
-// Función para cargar ciudades de nacimiento
-function loadCiudadesNacimiento() {
-  const departamento = select.departamentoNacimiento.value;
-  select.ciudadNacimiento.innerHTML = '<option value="">Seleccione una ciudad</option>';
-  if (departamento && locations[departamento]) {
+  // Función para cargar ciudades de nacimiento
+  function loadCiudadesNacimiento() {
+    const departamento = select.departamentoNacimiento.value;
+    select.ciudadNacimiento.innerHTML =
+      '<option value="">Seleccione una ciudad</option>';
+    if (departamento && locations[departamento]) {
       select.ciudadNacimiento.disabled = false;
       select.ciudadNacimiento.classList.remove("disabled-select");
       locations[departamento].forEach((ciudad) => {
-          const option = document.createElement("option");
-          option.value = ciudad;
-          option.textContent = ciudad;
-          select.ciudadNacimiento.appendChild(option);
+        const option = document.createElement("option");
+        option.value = ciudad;
+        option.textContent = ciudad;
+        select.ciudadNacimiento.appendChild(option);
       });
-  } else {
+    } else {
       select.ciudadNacimiento.disabled = true;
       select.ciudadNacimiento.classList.add("disabled-select");
+    }
   }
-}
 
-// Función para cargar ciudades de residencia
-function loadCiudadesResidencia() {
-  const departamento = select.departamentoResidencia.value;
-  select.ciudadResidencia.innerHTML = '<option value="">Seleccione una ciudad</option>';
-  if (departamento && locations[departamento]) {
+  // Función para cargar ciudades de residencia
+  function loadCiudadesResidencia() {
+    const departamento = select.departamentoResidencia.value;
+    select.ciudadResidencia.innerHTML =
+      '<option value="">Seleccione una ciudad</option>';
+    if (departamento && locations[departamento]) {
       select.ciudadResidencia.disabled = false;
       select.ciudadResidencia.classList.remove("disabled-select");
       locations[departamento].forEach((ciudad) => {
-          const option = document.createElement("option");
-          option.value = ciudad;
-          option.textContent = ciudad;
-          select.ciudadResidencia.appendChild(option);
+        const option = document.createElement("option");
+        option.value = ciudad;
+        option.textContent = ciudad;
+        select.ciudadResidencia.appendChild(option);
       });
-  } else {
+    } else {
       select.ciudadResidencia.disabled = true;
       select.ciudadResidencia.classList.add("disabled-select");
+    }
   }
-}
 
-// Función para cargar reconocimientos
-async function loadReconocimientos() {
-  const response = await fetch("/static/json/reconocimientos.json");
-  reconocimientos = await response.json();
-  select.reconocimiento.innerHTML = '<option value="" disabled selected>Seleccione un reconocimiento</option>';
-  reconocimientos.forEach((reconocimiento) => {
+  // Función para cargar reconocimientos
+  async function loadReconocimientos() {
+    const response = await fetch("/static/json/reconocimientos.json");
+    reconocimientos = await response.json();
+    select.reconocimiento.innerHTML =
+      '<option value="" disabled selected>Seleccione un reconocimiento</option>';
+    reconocimientos.forEach((reconocimiento) => {
       const option = document.createElement("option");
       option.value = reconocimiento;
       option.textContent = reconocimiento;
       select.reconocimiento.appendChild(option);
-  });
-}
+    });
+  }
 
-// Función para cargar condiciones de excepción
-async function loadCondicionesExcepcion() {
-  const response = await fetch("/static/json/condiciones_excepcion.json");
-  excepciones = await response.json();
-  select.condExcepcion.innerHTML = '<option value="">Seleccione una condición de excepción</option>';
-  Object.keys(excepciones).forEach((key) => {
+  // Función para cargar condiciones de excepción
+  async function loadCondicionesExcepcion() {
+    const response = await fetch("/static/json/condiciones_excepcion.json");
+    excepciones = await response.json();
+    select.condExcepcion.innerHTML =
+      '<option value="">Seleccione una condición de excepción</option>';
+    Object.keys(excepciones).forEach((key) => {
       const option = document.createElement("option");
       option.value = key;
       option.textContent = excepciones[key];
       select.condExcepcion.appendChild(option);
-  });
-}
+    });
+  }
 
-// Función para cargar ocupaciones
-async function loadOcupaciones() {
-  const response = await fetch("/static/json/ocupaciones.json");
-  ocupaciones = await response.json();
-  select.ocupacion.innerHTML = '<option value="" disabled selected>Seleccione una ocupación</option>';
-  ocupaciones.forEach((ocupacion) => {
+  // Función para cargar ocupaciones
+  async function loadOcupaciones() {
+    const response = await fetch("/static/json/ocupaciones.json");
+    ocupaciones = await response.json();
+    select.ocupacion.innerHTML =
+      '<option value="" disabled selected>Seleccione una ocupación</option>';
+    ocupaciones.forEach((ocupacion) => {
       const option = document.createElement("option");
       option.value = ocupacion;
       option.textContent = ocupacion;
       select.ocupacion.appendChild(option);
-  });
+    });
 
-  select.ocupacion.addEventListener("change", function () {
+    select.ocupacion.addEventListener("change", function () {
       if (select.ocupacion.value === "No trabaja") {
-          select.razonTrabaja.disabled = true;
-          select.razonTrabaja.value = "";
-          select.horasTrabajoInput.disabled = true;
-          select.horasTrabajoInput.value = "";
+        select.razonTrabaja.disabled = true;
+        select.razonTrabaja.value = "";
+        select.horasTrabajoInput.disabled = true;
+        select.horasTrabajoInput.value = "";
       } else {
-          select.razonTrabaja.disabled = false;
-          select.horasTrabajoInput.disabled = false;
+        select.razonTrabaja.disabled = false;
+        select.horasTrabajoInput.disabled = false;
       }
-  });
-}
+    });
+  }
 
-// Función para cargar razones de trabajo
-async function loadRazonTrabaja() {
-  const response = await fetch("/static/json/razon_trabaja.json");
-  const razones = await response.json();
-  select.razonTrabaja.innerHTML = '<option value="" disabled selected>Seleccione una razón</option>';
-  razones.forEach((razon) => {
+  // Función para cargar razones de trabajo
+  async function loadRazonTrabaja() {
+    const response = await fetch("/static/json/razon_trabaja.json");
+    const razones = await response.json();
+    select.razonTrabaja.innerHTML =
+      '<option value="" disabled selected>Seleccione una razón</option>';
+    razones.forEach((razon) => {
       const option = document.createElement("option");
       option.value = razon;
       option.textContent = razon;
       select.razonTrabaja.appendChild(option);
-  });
-}
+    });
+  }
 
-// Función para cargar niveles educativos
-async function loadNivelesEducativos() {
-  const response = await fetch("/static/json/niveles_educativos.json");
-  const niveles = await response.json();
-  niveles.forEach((nivel) => {
+  // Función para cargar niveles educativos
+  async function loadNivelesEducativos() {
+    const response = await fetch("/static/json/niveles_educativos.json");
+    const niveles = await response.json();
+    niveles.forEach((nivel) => {
       const optionPadre = document.createElement("option");
       optionPadre.value = nivel;
       optionPadre.textContent = nivel;
@@ -208,8 +218,8 @@ async function loadNivelesEducativos() {
       optionMadre.value = nivel;
       optionMadre.textContent = nivel;
       select.nivelEducativoMadre.appendChild(optionMadre);
-  });
-}
+    });
+  }
   // Función para validar la suma de los valores en una categoría
   function validarSuma(alto, medio, bajo, categoria) {
     const suma =
@@ -238,7 +248,12 @@ async function loadNivelesEducativos() {
         bajo: select.indivBajo,
         nombre: "Individual",
       },
-      { alto: select.famiAlto, medio: select.famiMedio, bajo: select.famiBajo, nombre: "Familiar" },
+      {
+        alto: select.famiAlto,
+        medio: select.famiMedio,
+        bajo: select.famiBajo,
+        nombre: "Familiar",
+      },
       {
         alto: select.econoAlto,
         medio: select.econoMedio,
@@ -292,7 +307,7 @@ async function loadNivelesEducativos() {
     return todasValidas;
   }
 
-    select.acompanamientos.addEventListener("change", function () {
+  select.acompanamientos.addEventListener("change", function () {
     maxRiesgos = select.acompanamientos.value;
     select.indivAlto.value = "";
     select.indivMedio.value = "";
@@ -369,7 +384,6 @@ async function loadNivelesEducativos() {
   select.yearAdmision.addEventListener("change", updateFechaNacimiento);
   select.semestreAdmision.addEventListener("change", updateFechaNacimiento);
 
-
   function validarEstrato(input) {
     if (input.value < 1) input.value = 1;
     if (input.value > 6) input.value = 6;
@@ -387,8 +401,6 @@ async function loadNivelesEducativos() {
     if (input.value < 0) input.value = "0";
   }
 
-  
-
   select.cambiarPrograma.addEventListener("change", function () {
     if (select.cambiarPrograma.value === "Sí") {
       select.programaContainer.classList.remove("uk-child-width-1-2@s");
@@ -401,8 +413,6 @@ async function loadNivelesEducativos() {
       select.nuevoProgramaContainer.style.display = "none";
     }
   });
-
-  
 
   function checkCiudadResidencia() {
     const ciudadResidencia = select.ciudadResidencia.value;
@@ -419,7 +429,7 @@ async function loadNivelesEducativos() {
       select.comunaResidenciaInput.value = "";
     }
   }
-  
+
   function validarRadioButtonsPorCategoria() {
     const rows = document.querySelectorAll("table tbody tr"); // Selecciona todas las filas de la tabla
     let isValid = true;
@@ -644,13 +654,9 @@ async function loadNivelesEducativos() {
     });
   }
 
-  
-
   document
     .getElementById("random-button")
     .addEventListener("click", function () {
-      
-
       // Función para asegurar que el valor no esté vacío
       function getNonEmptyRandomValue(array) {
         let value;
@@ -662,7 +668,9 @@ async function loadNivelesEducativos() {
 
       function getRandomSelectValue(selectElement) {
         // Obtener las opciones del <select> y filtrar las que no tengan valor vacío
-        const options = Array.from(selectElement.options).filter(option => option.value !== "");
+        const options = Array.from(selectElement.options).filter(
+          (option) => option.value !== ""
+        );
         // Seleccionar una opción aleatoria de las opciones filtradas
         return options[Math.floor(Math.random() * options.length)].value;
       }
@@ -761,8 +769,12 @@ async function loadNivelesEducativos() {
       select.computador.value = Math.random() > 0.5 ? "Sí" : "No";
       select.internet.value = Math.random() > 0.5 ? "Sí" : "No";
 
-      select.nivelEducativoPadre.value = getRandomSelectValue(select.nivelEducativoPadre);
-      select.nivelEducativoMadre.value = getRandomSelectValue(select.nivelEducativoMadre);
+      select.nivelEducativoPadre.value = getRandomSelectValue(
+        select.nivelEducativoPadre
+      );
+      select.nivelEducativoMadre.value = getRandomSelectValue(
+        select.nivelEducativoMadre
+      );
 
       marcarHabilidadesAleatoriamente();
 
@@ -784,16 +796,14 @@ async function loadNivelesEducativos() {
       });
     });
 
-
-    loadSedes();
-    loadDepartamentos();
-    loadFacultades();
-    loadCondicionesExcepcion();
-    loadReconocimientos();
-    loadOcupaciones();
-    loadRazonTrabaja();
-    loadNivelesEducativos();
-  
+  loadSedes();
+  loadDepartamentos();
+  loadFacultades();
+  loadCondicionesExcepcion();
+  loadReconocimientos();
+  loadOcupaciones();
+  loadRazonTrabaja();
+  loadNivelesEducativos();
 
   document
     .getElementById("dataForm")
@@ -805,14 +815,18 @@ async function loadNivelesEducativos() {
           status: "warning",
           pos: "bottom-right",
           timeout: 3000,
-        })
+        });
         return;
-      }else if (!validarTodasLasCategorias()) {
+      } else if (!validarTodasLasCategorias()) {
         event.preventDefault();
         return;
-      }
-      else {
+      } else {
         event.preventDefault();
+        const submitButton = document.getElementById("submit");
+        submitButton.disabled = true;
+        submitButton.classList.add("uk-disabled");
+        const spinner = document.getElementById('spinner');
+  spinner.classList.remove('uk-hidden');
         const formData = {
           programa_admision: select.programa.value,
           condicion_excepcion:
@@ -998,8 +1012,12 @@ async function loadNivelesEducativos() {
           },
           body: jsonData,
         })
+        
           .then((response) => response.json()) // Convertir la respuesta a JSON
           .then((data) => {
+            spinner.classList.add('uk-hidden');
+            submitButton.disabled = false;
+            submitButton.classList.remove("uk-disabled");
             // Mostrar la respuesta en la consola
             console.log("Success:", data);
             // Mostrar la respuesta en el modal
@@ -1039,7 +1057,8 @@ async function loadNivelesEducativos() {
               responseContent.innerText = `Error: ${error.message}`;
             }
             UIkit.modal("#response-modal").show();
-          });
+          } 
+        );
       }
     });
 });
