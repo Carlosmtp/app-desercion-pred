@@ -124,12 +124,12 @@ body {
 }
 
 #random {
-    top: 20px;
+    bottom: 20px;
     right: 20px;
 }
 
 #clear {
-    top: 80px;
+    bottom: 80px;
     right: 20px;
 }
 
