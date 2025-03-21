@@ -662,6 +662,7 @@ document.addEventListener("DOMContentLoaded", function () {
   document
     .getElementById("random-button")
     .addEventListener("click", function () {
+      maxRiesgos = 0;
       // Función para asegurar que el valor no esté vacío
       function getNonEmptyRandomValue(array) {
         let value;
