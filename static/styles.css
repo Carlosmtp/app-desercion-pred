@@ -1,0 +1,259 @@
+:root {
+    --color-primary: #D32F2F;
+    --color-secondary: #a63232;
+    --color-text: #212121;
+    --color-background-gray: #F5F5F5;
+    --color-background-light: #FBE9E7;
+    --color-background-white: #ffffff;
+}
+
+body {
+    background-color: var(--color-background-light);
+    color: var(--color-text);
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+.uk-card {
+    background-color: var(--color-background-white);
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 90%;
+    margin: auto;
+}
+
+.uk-section {
+    background-color: var(--color-background-gray);
+    padding: 20px;
+}
+
+.uk-button-primary {
+    background-color: var(--color-primary);
+    color: var(--color-background-white);
+    border-radius: 5px;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+}
+
+.uk-button-primary:hover {
+    background-color: var(--color-secondary);
+}
+
+.uk-heading-line {
+    border-bottom: 3px solid var(--color-primary);
+    padding-bottom: 5px;
+}
+
+.uk-alert-success {
+    background-color: var(--color-background-light);
+    color: var(--color-text);
+    border-left: 4px solid var(--color-primary);
+    padding: 10px;
+}
+
+.uk-table {
+    border-collapse: collapse;
+    width: 100%; /* La tabla ocupa el 100% del contenedor */
+    overflow-x: auto; /* Permite el desplazamiento horizontal en pantallas pequeñas */
+    display: table; /* Asegura que la tabla se comporte como una tabla */
+}
+
+.uk-table th, .uk-table td {
+    padding: 10px;
+    text-align: center;
+    border: 2px solid #ddd;
+    white-space: nowrap; /* Evita que el texto se divida en varias líneas */
+}
+
+.uk-table th {
+    background-color: var(--color-primary);
+    color: var(--color-background-white);
+}
+
+.uk-table tr:hover {
+    background-color: #f5f5f5;
+}
+
+/* Estilos responsivos para pantallas pequeñas */
+@media (max-width: 768px) {
+    .uk-table {
+        display: block; /* Cambia a bloque para permitir el desplazamiento horizontal */
+    }
+
+    .uk-table th, .uk-table td {
+        padding: 8px; /* Reduce el padding para pantallas pequeñas */
+    }
+}
+.uk-radio:checked, .uk-checkbox:checked {
+    background-color: var(--color-primary);
+    border-color: var(--color-primary);
+}
+
+.uk-radio {
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border: 2px solid var(--color-primary);
+    border-radius: 50%;
+    display: inline-block;
+    position: relative;
+    cursor: pointer;
+}
+
+.uk-radio:checked::before {
+    content: "";
+    width: 18px;
+    height: 18px;
+    background-color: var(--color-primary);
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#random, #clear {
+    position: fixed;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+#random {
+    top: 20px;
+    right: 20px;
+}
+
+#clear {
+    top: 80px;
+    right: 20px;
+}
+
+#random button, #clear button {
+    cursor: pointer;
+    width: 50px;
+    height: 50px;
+    background-color: var(--color-primary);
+    color: var(--color-background-white);
+    border-radius: 50%;
+    border: none;
+    margin: 0 10px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+#random button:hover, #clear button:hover {
+    background-color: var(--color-secondary);
+    box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.5);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    #random, #clear {
+        top: 15px;
+        right: 15px;
+    }
+
+    #clear {
+        top: 75px;
+    }
+
+    #random button, #clear button {
+        width: 45px;
+        height: 45px;
+    }
+}
+
+@media (max-width: 768px) {
+    #random, #clear {
+        top: 10px;
+        right: 10px;
+    }
+
+    #clear {
+        top: 70px;
+    }
+
+    #random button, #clear button {
+        width: 40px;
+        height: 40px;
+    }
+}
+
+@media (max-width: 480px) {
+    #random, #clear {
+        top: 5px;
+        right: 5px;
+    }
+
+    #clear {
+        top: 65px;
+    }
+
+    #random button, #clear button {
+        width: 35px;
+        height: 35px;
+    }
+}
+
+/* Estilos para el contenedor de la respuesta */
+.response-content {
+    background-color: #f8f8f8; /* Fondo suave */
+    border: 1px solid #e0e0e0; /* Borde sutil */
+    border-radius: 8px; /* Bordes redondeados */
+    padding: 15px; /* Espaciado interno */
+    max-height: 400px; /* Altura máxima */
+    overflow-y: auto; /* Scroll vertical si es necesario */
+    font-family: Arial, sans-serif; /* Fuente más moderna */
+    font-size: 14px; /* Tamaño de fuente */
+    line-height: 1.6; /* Espaciado entre líneas */
+    color: #333; /* Color de texto */
+  }
+  
+  /* Estilos para el scroll */
+  .response-content::-webkit-scrollbar {
+    width: 8px; /* Ancho del scroll */
+  }
+  
+  .response-content::-webkit-scrollbar-track {
+    background: #f1f1f1; /* Color de fondo del track */
+    border-radius: 4px;
+  }
+  
+  .response-content::-webkit-scrollbar-thumb {
+    background: #888; /* Color del thumb */
+    border-radius: 4px;
+  }
+  
+  .response-content::-webkit-scrollbar-thumb:hover {
+    background: #555; /* Color del thumb al pasar el mouse */
+  }
+
+  .desertor-response {
+    background-color: #ffb6b6; /* Fondo suave */
+    border: 1px solid #e0e0e0; /* Borde sutil */
+    border-radius: 8px; /* Bordes redondeados */
+    padding: 15px; /* Espaciado interno */
+    max-height: 400px; /* Altura máxima */
+    overflow-y: auto; /* Scroll vertical si es necesario */
+    font-family: Arial, sans-serif; /* Fuente más moderna */
+    font-size: 14px; /* Tamaño de fuente */
+    line-height: 1.6; /* Espaciado entre líneas */
+    color: #333; /* Color de texto */
+  }
+
+  .no-desertor-response {
+    background-color: #a8ff9a; /* Fondo suave */
+    border: 1px solid #e0e0e0; /* Borde sutil */
+    border-radius: 8px; /* Bordes redondeados */
+    padding: 15px; /* Espaciado interno */
+    max-height: 400px; /* Altura máxima */
+    overflow-y: auto; /* Scroll vertical si es necesario */
+    font-family: Arial, sans-serif; /* Fuente más moderna */
+    font-size: 14px; /* Tamaño de fuente */
+    line-height: 1.6; /* Espaciado entre líneas */
+    color: #333; /* Color de texto */
+  }

@@ -1,0 +1,26 @@
+{
+    "Facultad de Ingeniería": [
+        "Ingeniería Civil",
+        "Ingeniería de Sistemas",
+        "Ingeniería Electrónica",
+        "Ingeniería Industrial"
+    ],
+    "Facultad de Ciencias": [
+        "Matemáticas",
+        "Física",
+        "Química",
+        "Biología"
+    ],
+    "Facultad de Humanidades": [
+        "Filosofía",
+        "Historia",
+        "Lenguas Modernas",
+        "Psicología"
+    ],
+    "Facultad de Economía y Administración": [
+        "Economía",
+        "Administración de Empresas",
+        "Contaduría Pública",
+        "Negocios Internacionales"
+    ]
+}
