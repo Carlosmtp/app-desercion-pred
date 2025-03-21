@@ -47,25 +47,18 @@ body {
     padding-bottom: 5px;
 }
 
-.uk-alert-success {
-    background-color: var(--color-background-light);
-    color: var(--color-text);
-    border-left: 4px solid var(--color-primary);
-    padding: 10px;
-}
-
 .uk-table {
     border-collapse: collapse;
-    width: 100%; /* La tabla ocupa el 100% del contenedor */
-    overflow-x: auto; /* Permite el desplazamiento horizontal en pantallas pequeñas */
-    display: table; /* Asegura que la tabla se comporte como una tabla */
+    width: 100%;
+    overflow-x: auto;
+    display: table;
 }
 
 .uk-table th, .uk-table td {
     padding: 10px;
     text-align: center;
     border: 2px solid #ddd;
-    white-space: nowrap; /* Evita que el texto se divida en varias líneas */
+    white-space: nowrap;
 }
 
 .uk-table th {
@@ -77,16 +70,6 @@ body {
     background-color: #f5f5f5;
 }
 
-/* Estilos responsivos para pantallas pequeñas */
-@media (max-width: 768px) {
-    .uk-table {
-        display: block; /* Cambia a bloque para permitir el desplazamiento horizontal */
-    }
-
-    .uk-table th, .uk-table td {
-        padding: 8px; /* Reduce el padding para pantallas pequeñas */
-    }
-}
 .uk-radio:checked, .uk-checkbox:checked {
     background-color: var(--color-primary);
     border-color: var(--color-primary);
@@ -115,22 +98,31 @@ body {
     transform: translate(-50%, -50%);
 }
 
+.table-container {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.uk-table th, .uk-table td {
+    white-space: nowrap;
+}
+
+.uk-radio {
+    transform: scale(1.2);
+}
+
 #random, #clear {
     position: fixed;
     z-index: 1000;
     display: flex;
     align-items: center;
     cursor: pointer;
-}
-
-#random {
     bottom: 20px;
     right: 20px;
 }
 
 #clear {
     bottom: 80px;
-    right: 20px;
 }
 
 #random button, #clear button {
@@ -153,30 +145,22 @@ body {
 /* Responsive Design */
 @media (max-width: 1024px) {
     #random, #clear {
-        top: 15px;
+        bottom: 20px;
         right: 15px;
     }
-
     #clear {
-        top: 75px;
-    }
-
-    #random button, #clear button {
-        width: 45px;
-        height: 45px;
+        bottom: 80px;
     }
 }
 
 @media (max-width: 768px) {
     #random, #clear {
-        top: 10px;
+        bottom: 10px;
         right: 10px;
     }
-
     #clear {
-        top: 70px;
+        bottom: 70px;
     }
-
     #random button, #clear button {
         width: 40px;
         height: 40px;
@@ -185,75 +169,14 @@ body {
 
 @media (max-width: 480px) {
     #random, #clear {
-        top: 5px;
+        bottom: 10px;
         right: 5px;
     }
-
     #clear {
-        top: 65px;
+        bottom: 60px;
     }
-
     #random button, #clear button {
         width: 35px;
         height: 35px;
     }
 }
-
-/* Estilos para el contenedor de la respuesta */
-.response-content {
-    background-color: #f8f8f8; /* Fondo suave */
-    border: 1px solid #e0e0e0; /* Borde sutil */
-    border-radius: 8px; /* Bordes redondeados */
-    padding: 15px; /* Espaciado interno */
-    max-height: 400px; /* Altura máxima */
-    overflow-y: auto; /* Scroll vertical si es necesario */
-    font-family: Arial, sans-serif; /* Fuente más moderna */
-    font-size: 14px; /* Tamaño de fuente */
-    line-height: 1.6; /* Espaciado entre líneas */
-    color: #333; /* Color de texto */
-  }
-  
-  /* Estilos para el scroll */
-  .response-content::-webkit-scrollbar {
-    width: 8px; /* Ancho del scroll */
-  }
-  
-  .response-content::-webkit-scrollbar-track {
-    background: #f1f1f1; /* Color de fondo del track */
-    border-radius: 4px;
-  }
-  
-  .response-content::-webkit-scrollbar-thumb {
-    background: #888; /* Color del thumb */
-    border-radius: 4px;
-  }
-  
-  .response-content::-webkit-scrollbar-thumb:hover {
-    background: #555; /* Color del thumb al pasar el mouse */
-  }
-
-  .desertor-response {
-    background-color: #ffb6b6; /* Fondo suave */
-    border: 1px solid #e0e0e0; /* Borde sutil */
-    border-radius: 8px; /* Bordes redondeados */
-    padding: 15px; /* Espaciado interno */
-    max-height: 400px; /* Altura máxima */
-    overflow-y: auto; /* Scroll vertical si es necesario */
-    font-family: Arial, sans-serif; /* Fuente más moderna */
-    font-size: 14px; /* Tamaño de fuente */
-    line-height: 1.6; /* Espaciado entre líneas */
-    color: #333; /* Color de texto */
-  }
-
-  .no-desertor-response {
-    background-color: #a8ff9a; /* Fondo suave */
-    border: 1px solid #e0e0e0; /* Borde sutil */
-    border-radius: 8px; /* Bordes redondeados */
-    padding: 15px; /* Espaciado interno */
-    max-height: 400px; /* Altura máxima */
-    overflow-y: auto; /* Scroll vertical si es necesario */
-    font-family: Arial, sans-serif; /* Fuente más moderna */
-    font-size: 14px; /* Tamaño de fuente */
-    line-height: 1.6; /* Espaciado entre líneas */
-    color: #333; /* Color de texto */
-  }
